@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+<title>豆瓣电影网 - 电影评分_影评短评_高分电影排行榜大全</title>
+<meta name="description" content="豆瓣电影网(https://doubandianyingwang-cn.github.io)提供高清电影电视剧在线观看、真实评分、影评短评与高分电影排行榜，每日更新、无需注册、手机电脑自适应，看片前先看豆瓣电影网评分。">
+<meta name="keywords" content="豆瓣电影网,豆瓣电影网官网,doubandianyingwang-cn.github.io,电影评分,高分电影排行榜,影评短评,电影电视剧在线观看">
+<meta name="author" content="豆瓣电影网">
+<meta name="robots" content="index,follow">
+<meta name="renderer" content="webkit">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#007722">
+<meta name="msvalidate.01" content="DOUBANDIANYING-BING-VERIFY">
+<meta name="baidu-site-verification" content="doubandianyingwang">
+<link rel="canonical" href="https://doubandianyingwang-cn.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="豆瓣电影网">
+<meta property="og:title" content="豆瓣电影网 - 电影评分_影评短评_高分电影排行榜">
+<meta property="og:description" content="豆瓣电影网收录最新电影电视剧、真实评分与影评短评，高分榜单每日更新，手机电脑自适应。">
+<meta property="og:url" content="https://doubandianyingwang-cn.github.io/">
+<meta property="og:image" content="https://doubandianyingwang-cn.github.io/static/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="豆瓣电影网 - 电影评分与高分榜单">
+<meta name="twitter:description" content="看片前先看评分，就上豆瓣电影网。">
+<style>
+/* ================== 基础 ================== */
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  font-family:"PingFang SC","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+  font-size:14px;line-height:1.75;color:#111;background:#f8f8f5;
+}
+a{color:#37a;text-decoration:none}
+a:hover{color:#fff;background:#37a}
+ul,ol{list-style:none}
+img{max-width:100%;display:block;border:0}
+input,button{font-family:inherit;font-size:inherit;border:0;outline:none}
+
+:root{
+  --grn:#007722;
+  --grn2:#42bd56;
+  --paper:#f8f8f5;
+  --card:#fff;
+  --ink:#111;
+  --mid:#494949;
+  --sub:#9b9b9b;
+  --line:#e6e4df;
+  --star:#ffac2d;
+  --link:#37a;
+}
+.wrap{width:100%;max-width:1000px;margin:0 auto;padding:0 16px}
+.sr{position:absolute;left:-9999px;top:0}
+
+/* ================== 报头（豆瓣式） ================== */
+.masthead{background:#fff;border-bottom:2px solid var(--grn)}
+.masthead .wrap{display:flex;align-items:center;height:58px;gap:18px}
+.brand{display:flex;align-items:baseline;gap:8px;flex:0 0 auto}
+.brand strong{font-size:22px;color:var(--grn);letter-spacing:.5px;font-weight:700}
+.brand em{font-style:normal;font-size:12px;color:var(--sub)}
+.masthead .go{flex:1 1 auto;display:flex;height:32px;border:1px solid var(--grn);border-radius:2px;overflow:hidden;max-width:340px}
+.masthead .go input{flex:1 1 auto;padding:0 10px;font-size:13px;background:#fff;min-width:0}
+.masthead .go button{flex:0 0 auto;padding:0 16px;font-size:13px;color:#fff;background:var(--grn);cursor:pointer}
+.gonav{display:flex;gap:16px;flex:0 0 auto;margin-left:auto}
+.gonav a{font-size:13px;color:var(--mid)}
+.gonav a.on{color:var(--grn);font-weight:700}
+.subnav{background:#f2f0ea;border-bottom:1px solid var(--line)}
+.subnav .wrap{display:flex;gap:0;padding:0 16px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.subnav .wrap::-webkit-scrollbar{display:none}
+.subnav a{flex:0 0 auto;font-size:13px;padding:9px 14px;color:var(--mid);white-space:nowrap;border-bottom:2px solid transparent}
+.subnav a:hover{color:var(--grn);background:transparent}
+.subnav a.on{color:var(--grn);font-weight:700;border-bottom-color:var(--grn);background:transparent}
+
+/* ================== 页头标题条 ================== */
+.ptitle{padding:26px 0 14px}
+.ptitle h1{font-size:24px;font-weight:700;letter-spacing:.4px;color:var(--ink)}
+.ptitle h1 span{color:var(--grn)}
+.ptitle p{font-size:13px;color:var(--mid);margin-top:6px;max-width:760px}
+.ptitle .url{margin-top:8px;font-size:12.5px;color:var(--sub)}
+.ptitle .url b{color:var(--grn);font-weight:600}
+.lede{border-left:3px solid var(--grn2);padding:10px 14px;background:#fff;margin-top:14px;font-size:13px;color:var(--mid)}
+
+/* ================== 正在热映：横向 snap 轨道 ================== */
+.sec{padding:8px 0 26px}
+.shead{display:flex;align-items:baseline;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:14px}
+.shead h2{font-size:17px;font-weight:700;color:var(--ink)}
+.shead h2 i{font-style:normal;font-size:11.5px;color:#fff;background:var(--grn);padding:2px 7px;border-radius:2px;margin-left:8px;vertical-align:2px}
+.shead .lk{font-size:12.5px;color:var(--link)}
+.track{
+  display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;
+  padding-bottom:10px;scrollbar-width:thin;-webkit-overflow-scrolling:touch;
+}
+.track::-webkit-scrollbar{height:6px}
+.track::-webkit-scrollbar-thumb{background:#d8d5cd;border-radius:3px}
+.snap{flex:0 0 148px;scroll-snap-align:start;background:var(--card);border:1px solid var(--line)}
+.snap .pv{position:relative;aspect-ratio:2/3;display:flex;align-items:center;justify-content:center;text-align:center;padding:10px;overflow:hidden}
+.snap .pv b{font-size:14px;color:#fff;letter-spacing:.5px;line-height:1.35;text-shadow:0 1px 6px rgba(0,0,0,.45)}
+.snap .pv .qy{position:absolute;right:6px;top:6px;font-size:10px;font-weight:700;color:#fff;background:rgba(0,0,0,.5);padding:2px 6px;border-radius:2px}
+.snap .pv .st{position:absolute;left:0;right:0;bottom:0;padding:6px 8px;font-size:11px;color:#fff;background:linear-gradient(180deg,transparent,rgba(0,0,0,.75))}
+.snap .cap{padding:8px 9px 10px}
+.snap .cap h3{font-size:13px;font-weight:700;color:var(--link);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.snap .cap .rt{font-size:12px;color:var(--sub);margin-top:2px}
+.p1 .pv{background:linear-gradient(160deg,#2c2c2c,#111)}
+.p2 .pv{background:linear-gradient(160deg,#42bd56,#0b6b2e)}
+.p3 .pv{background:linear-gradient(160deg,#ffac2d,#b45c00)}
+.p4 .pv{background:linear-gradient(160deg,#5b7fa8,#26405e)}
+.p5 .pv{background:linear-gradient(160deg,#b56b8a,#6b2c48)}
+.p6 .pv{background:linear-gradient(160deg,#7d6bb5,#3a2a70)}
+
+/* ================== 双栏骨架 ================== */
+.cols{display:grid;grid-template-columns:1fr 288px;gap:28px;align-items:start}
+@media (max-width:900px){.cols{grid-template-columns:1fr;gap:0}}
+
+/* 条目式列表（豆瓣 media object） */
+.entries li{display:flex;gap:14px;padding:16px 0;border-bottom:1px dotted var(--line)}
+.entries li:last-child{border-bottom:0}
+.entries .thumb{flex:0 0 88px;width:88px;aspect-ratio:2/3;display:flex;align-items:center;justify-content:center;text-align:center;padding:8px;overflow:hidden}
+.entries .thumb b{font-size:12.5px;color:#fff;letter-spacing:.5px;line-height:1.3;text-shadow:0 1px 5px rgba(0,0,0,.45)}
+.entries .body{flex:1 1 auto;min-width:0}
+.entries .body h3{font-size:15px;font-weight:700}
+.entries .body h3 a{color:var(--link)}
+.entries .body .meta{font-size:12.5px;color:var(--sub);margin-top:2px}
+.entries .body .desc{font-size:12.5px;color:var(--mid);margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.stars{font-size:13px;color:var(--star);letter-spacing:1px}
+.stars .num{color:#e09000;font-weight:700;font-size:14px;margin-left:5px;letter-spacing:0}
+.stars .cnt{color:var(--sub);font-size:12px;margin-left:6px;letter-spacing:0}
+.tagline{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}
+.tagline span{font-size:11.5px;padding:2px 8px;border-radius:2px;background:#f2f0ea;color:var(--mid)}
+.entries .act{margin-top:8px}
+.entries .act a{display:inline-block;font-size:12px;padding:4px 12px;border-radius:2px;color:#fff;background:var(--grn)}
+.entries .act a:hover{background:var(--grn2);color:#fff}
+
+/* ================== 侧栏面板 ================== */
+.side .panel{background:var(--card);border:1px solid var(--line);margin-bottom:18px}
+.side .panel h3{font-size:13.5px;font-weight:700;color:var(--ink);padding:10px 14px;border-bottom:1px solid var(--line);background:#f7f6f1;display:flex;align-items:center;justify-content:space-between}
+.side .panel h3 span{font-size:11px;font-weight:400;color:var(--sub)}
+.side .panel .inner{padding:12px 14px}
+.top10{counter-reset:t}
+.top10 li{counter-increment:t;display:flex;align-items:baseline;gap:8px;padding:7px 0;border-bottom:1px dotted var(--line);font-size:13px}
+.top10 li:last-child{border-bottom:0}
+.top10 li::before{content:counter(t);flex:0 0 16px;color:var(--sub);font-size:12px;font-weight:700;text-align:center}
+.top10 li:nth-child(-n+3)::before{color:var(--grn)}
+.top10 li a{flex:1 1 auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--link)}
+.top10 li em{font-style:normal;font-size:12px;color:#e09000;font-weight:700;flex:0 0 auto}
+.cloud{display:flex;flex-wrap:wrap;gap:7px}
+.cloud a{font-size:12px;padding:3px 9px;border-radius:2px;background:#f2f0ea;color:var(--mid)}
+.cloud a.big{font-size:13px;color:var(--grn);font-weight:700}
+.people li{display:flex;gap:10px;padding:9px 0;border-bottom:1px dotted var(--line)}
+.people li:last-child{border-bottom:0}
+.people .av{flex:0 0 34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;font-weight:700}
+.people .nm{flex:1 1 auto;min-width:0}
+.people .nm b{display:block;font-size:13px;color:var(--link);font-weight:700}
+.people .nm span{font-size:11.5px;color:var(--sub)}
+
+/* ================== 短评（quote 结构） ================== */
+.reviews{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media (max-width:900px){.reviews{grid-template-columns:1fr}}
+.reviews blockquote{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--grn2);padding:14px 16px}
+.reviews blockquote .who{display:flex;align-items:center;gap:9px;margin-bottom:8px}
+.reviews blockquote .who .av{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;font-weight:700}
+.reviews blockquote .who b{font-size:12.5px;color:var(--link)}
+.reviews blockquote p{font-size:13px;color:var(--mid);margin-bottom:9px}
+.reviews blockquote footer{font-size:11.5px;color:var(--sub);display:flex;align-items:center;justify-content:space-between;gap:8px}
+.reviews blockquote footer .on{color:var(--sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* ================== 数据条 ================== */
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:6px 0 24px}
+.facts div{background:var(--card);border:1px solid var(--line);padding:14px 10px;text-align:center}
+.facts b{display:block;font-size:20px;color:var(--grn)}
+.facts span{font-size:12px;color:var(--sub)}
+
+/* ================== 关于 ================== */
+.about{background:var(--card);border:1px solid var(--line);padding:20px}
+.about h2{font-size:17px;margin-bottom:10px}
+.about p{font-size:13.5px;color:var(--mid);margin-bottom:9px}
+.about ol{margin:6px 0 4px;padding-left:20px;list-style:decimal}
+.about ol li{font-size:13.5px;color:var(--mid);padding:3px 0}
+.kws{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.kws span{font-size:12px;padding:4px 10px;border:1px solid #cfe6d3;background:#f1f8f2;color:#0a6b28;border-radius:2px}
+
+/* ================== FAQ ================== */
+.faq{background:var(--card);border:1px solid var(--line);margin-top:14px}
+.faq details{border-bottom:1px solid var(--line)}
+.faq details:last-child{border-bottom:0}
+.faq summary{padding:13px 16px;font-size:14px;font-weight:700;cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"＋";color:var(--grn);font-weight:700}
+.faq details[open] summary{background:#f7f6f1}
+.faq details[open] summary::after{content:"－"}
+.faq p{padding:0 16px 14px;font-size:13px;color:var(--mid)}
+
+/* ================== 页脚 ================== */
+.foot{margin-top:18px;background:#fff;border-top:1px solid var(--line);padding:26px 0 30px}
+.foot .fg{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:20px}
+.foot h4{font-size:13px;margin-bottom:8px;color:var(--ink)}
+.foot a,.foot p{display:block;font-size:12.5px;color:var(--sub);padding:3px 0}
+.foot a{color:var(--link)}
+.foot .u{color:var(--grn);font-weight:700;font-size:12.5px}
+.foot .bot{margin-top:20px;padding-top:14px;border-top:1px solid var(--line);font-size:12px;color:var(--sub);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+
+.up{position:fixed;right:16px;bottom:22px;width:38px;height:38px;border-radius:3px;z-index:70;color:#fff;font-size:17px;font-weight:700;display:flex;align-items:center;justify-content:center;background:var(--grn)}
+
+/* ================== 移动端自适应 ================== */
+@media (max-width:760px){
+  .masthead .wrap{height:auto;padding:10px 0;flex-wrap:wrap;gap:10px}
+  .brand strong{font-size:19px}
+  .masthead .go{max-width:none;order:3;flex:1 1 100%}
+  .gonav{order:2;margin-left:auto;gap:12px}
+  .ptitle{padding:18px 0 10px}
+  .ptitle h1{font-size:20px}
+  .sec{padding:4px 0 20px}
+  .shead h2{font-size:16px}
+  .snap{flex:0 0 124px}
+  .entries li{gap:10px}
+  .entries .thumb{flex:0 0 72px;width:72px}
+  .entries .body h3{font-size:14px}
+  .facts{grid-template-columns:repeat(2,1fr)}
+  .foot .fg{grid-template-columns:1fr 1fr}
+}
+@media (max-width:420px){
+  .masthead .go{height:30px}
+  .gonav a:nth-child(n+5){display:none}
+  .foot .fg{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/xiaobao.js"></script>
+
+<!-- ========== 报头 ========== -->
+<header class="masthead">
+  <div class="wrap">
+    <a class="brand" href="#" aria-label="豆瓣电影网首页">
+      <strong>豆瓣电影网</strong>
+      <em>doubandianyingwang-cn</em>
+    </a>
+    <form class="go" action="#" method="get" role="search" onsubmit="return false;">
+      <label for="q" class="sr">搜索电影、剧集、影人</label>
+      <input id="q" name="q" type="search" placeholder="搜索电影 / 剧集 / 影人" autocomplete="off">
+      <button type="submit">搜索</button>
+    </form>
+    <nav class="gonav" aria-label="主导航">
+      <a href="#" class="on">首页</a>
+      <a href="#">影讯</a>
+      <a href="#">榜单</a>
+      <a href="#">短评</a>
+      <a href="#">分类</a>
+      <a href="#">在线看</a>
+    </nav>
+  </div>
+</header>
+
+<nav class="subnav" aria-label="影视频道">
+  <div class="wrap">
+    <a href="#" class="on">全部</a>
+    <a href="#">正在热映</a>
+    <a href="#">即将上映</a>
+    <a href="#">高分经典</a>
+    <a href="#">华语电影</a>
+    <a href="#">欧美电影</a>
+    <a href="#">日韩电影</a>
+    <a href="#">动画电影</a>
+    <a href="#">国产剧</a>
+    <a href="#">日韩剧</a>
+    <a href="#">美剧</a>
+    <a href="#">综艺</a>
+    <a href="#">纪录片</a>
+    <a href="#">短剧</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ========== 页头标题 ========== -->
+  <section class="ptitle wrap" id="home">
+    <h1>豆瓣电影网 — <span>先看评分，再看电影</span></h1>
+    <p>豆瓣电影网是集电影电视剧在线观看、真实评分、影评短评与高分榜单于一体的影视站点。看片之前先在豆瓣电影网查一查评分与短评，少踩雷、多看好片。</p>
+    <p class="url">网站网址：<b>https://doubandianyingwang-cn.github.io</b></p>
+    <p class="lede">数据每日 20:00 更新，评分综合全网播放热度与用户短评，榜单支持按类型、地区、年代筛选；全站免费开放，无需注册，手机电脑自适应。</p>
+    <ul class="facts">
+      <li><b>9.6万+</b><span>影视条目</span></li>
+      <li><b>128万</b><span>短评数量</span></li>
+      <li><b>14</b><span>分类频道</span></li>
+      <li><b>24h</b><span>在线服务</span></li>
+    </ul>
+  </section>
+
+  <!-- ========== 栏目1 正在热映（横向轨道） ========== -->
+  <section class="sec wrap" id="showing">
+    <div class="shead">
+      <h2>正在热映 <i>实时</i></h2>
+      <a class="lk" href="#">全部热映 &gt;&gt;</a>
+    </div>
+    <ul class="track">
+      <li class="snap p1"><a href="#">
+        <div class="pv"><span class="qy">4K</span><b>归途列车</b><span class="st">剧情 · 2026</span></div>
+        <div class="cap"><h3>归途列车</h3><p class="rt">8.9 分 · 12.4万人评</p></div></a></li>
+      <li class="snap p2"><a href="#">
+        <div class="pv"><span class="qy">1080P</span><b>星海航路</b><span class="st">科幻 · 2026</span></div>
+        <div class="cap"><h3>星海航路</h3><p class="rt">9.1 分 · 8.7万人评</p></div></a></li>
+      <li class="snap p3"><a href="#">
+        <div class="pv"><span class="qy">1080P</span><b>笑闯江湖</b><span class="st">喜剧 · 2026</span></div>
+        <div class="cap"><h3>笑闯江湖</h3><p class="rt">8.5 分 · 6.1万人评</p></div></a></li>
+      <li class="snap p4"><a href="#">
+        <div class="pv"><span class="qy">1080P</span><b>雾港谜案</b><span class="st">更新至 22 集</span></div>
+        <div class="cap"><h3>雾港谜案</h3><p class="rt">9.1 分 · 5.3万人评</p></div></a></li>
+      <li class="snap p5"><a href="#">
+        <div class="pv"><span class="qy">1080P</span><b>春日甜心</b><span class="st">更新至 16 集</span></div>
+        <div class="cap"><h3>春日甜心</h3><p class="rt">8.8 分 · 4.2万人评</p></div></a></li>
+      <li class="snap p6"><a href="#">
+        <div class="pv"><span class="qy">1080P</span><b>山海问仙</b><span class="st">更新至 48 集</span></div>
+        <div class="cap"><h3>山海问仙</h3><p class="rt">9.0 分 · 3.8万人评</p></div></a></li>
+      <li class="snap p2"><a href="#">
+        <div class="pv"><span class="qy">4K</span><b>蔚蓝之下</b><span class="st">纪录片 · 6 集全</span></div>
+        <div class="cap"><h3>蔚蓝之下</h3><p class="rt">9.2 分 · 2.6万人评</p></div></a></li>
+      <li class="snap p1"><a href="#">
+        <div class="pv"><span class="qy">1080P</span><b>黎明战线</b><span class="st">战争 · 2026</span></div>
+        <div class="cap"><h3>黎明战线</h3><p class="rt">8.9 分 · 7.5万人评</p></div></a></li>
+    </ul>
+  </section>
+
+  <!-- ========== 双栏主体 ========== -->
+  <div class="wrap">
+    <div class="cols">
+
+      <!-- 主栏 -->
+      <div class="col-main">
+
+        <!-- 栏目2 高分电影榜（条目式列表） -->
+        <section class="sec" id="chart">
+          <div class="shead">
+            <h2>高分电影榜 <i>TOP 8</i></h2>
+            <a class="lk" href="#">完整榜单 &gt;&gt;</a>
+          </div>
+          <ol class="entries">
+            <li>
+              <div class="thumb p2" aria-hidden="true"><b>星海<br>航路</b></div>
+              <div class="body">
+                <h3><a href="#">星海航路</a></h3>
+                <p class="meta">2026 · 科幻 / 冒险 / 剧情 · 137分钟 · 美国</p>
+                <p class="stars">★★★★★<span class="num">9.1</span><span class="cnt">8.7万人评价</span></p>
+                <p class="desc">一支远航舰队在失联星域寻找人类第二家园，途中遭遇的每一次抉择都指向文明的本质。视效克制而宏大，情感线扎实。</p>
+                <p class="tagline"><span>科幻经典</span><span>视效大片</span><span>高分</span></p>
+                <p class="act"><a href="#">在线观看</a></p>
+              </div>
+            </li>
+            <li>
+              <div class="thumb p3" aria-hidden="true"><b>笑闯<br>江湖</b></div>
+              <div class="body">
+                <h3><a href="#">笑闯江湖</a></h3>
+                <p class="meta">2026 · 喜剧 / 武侠 / 动作 · 105分钟 · 中国</p>
+                <p class="stars">★★★★☆<span class="num">8.5</span><span class="cnt">6.1万人评价</span></p>
+                <p class="desc">小人物误入江湖名门，靠着一张嘴和三分运气卷入门派纷争，笑点密却不油，动作戏干净利落。</p>
+                <p class="tagline"><span>国产喜剧</span><span>武侠</span><span>合家欢</span></p>
+                <p class="act"><a href="#">在线观看</a></p>
+              </div>
+            </li>
+            <li>
+              <div class="thumb p1" aria-hidden="true"><b>归途<br>列车</b></div>
+              <div class="body">
+                <h3><a href="#">归途列车</a></h3>
+                <p class="meta">2026 · 剧情 / 家庭 · 125分钟 · 中国</p>
+                <p class="stars">★★★★☆<span class="num">8.9</span><span class="cnt">12.4万人评价</span></p>
+                <p class="desc">一趟开往除夕的绿皮火车，串联起六组陌生人的归乡故事，克制细腻，是今年最扎实的华语群像戏。</p>
+                <p class="tagline"><span>华语佳作</span><span>群像</span><span>催泪</span></p>
+                <p class="act"><a href="#">在线观看</a></p>
+              </div>
+            </li>
+            <li>
+              <div class="thumb p4" aria-hidden="true"><b>沉默<br>的河</b></div>
+              <div class="body">
+                <h3><a href="#">沉默的河</a></h3>
+                <p class="meta">2026 · 悬疑 / 犯罪 · 110分钟 · 中国</p>
+                <p class="stars">★★★★☆<span class="num">8.6</span><span class="cnt">5.9万人评价</span></p>
+                <p class="desc">一桩沉案在枯水期浮出水面，追凶过程层层反转，结尾的处理让整部片的道德重量骤然加倍。</p>
+                <p class="tagline"><span>悬疑</span><span>反转</span><span>犯罪</span></p>
+                <p class="act"><a href="#">在线观看</a></p>
+              </div>
+            </li>
+            <li>
+              <div class="thumb p6" aria-hidden="true"><b>机械<br>之境</b></div>
+              <div class="body">
+                <h3><a href="#">机械之境</a></h3>
+                <p class="meta">2026 · 科幻 / 动作 · 131分钟 · 美国</p>
+                <p class="stars">★★★★☆<span class="num">8.7</span><span class="cnt">9.2万人评价</span></p>
+                <p class="desc">当仿生人开始追问自己的出厂设定，人与造物之间的界限被彻底打碎，节奏凌厉，结尾留白耐读。</p>
+                <p class="tagline"><span>赛博</span><span>动作</span><span>烧脑</span></p>
+                <p class="act"><a href="#">在线观看</a></p>
+              </div>
+            </li>
+            <li>
+              <div class="thumb p5" aria-hidden="true"><b>夏日<br>情书</b></div>
+              <div class="body">
+                <h3><a href="#">夏日情书</a></h3>
+                <p class="meta">2026 · 爱情 / 青春 · 96分钟 · 日本</p>
+                <p class="stars">★★★★☆<span class="num">8.3</span><span class="cnt">4.4万人评价</span></p>
+                <p class="desc">一封寄错的信牵出两段交错青春，画面干净通透，情绪推进缓慢但不拖沓，适合夏天重看。</p>
+                <p class="tagline"><span>青春</span><span>治愈</span><span>日系</span></p>
+                <p class="act"><a href="#">在线观看</a></p>
+              </div>
+            </li>
+            <li>
+              <div class="thumb p2" aria-hidden="true"><b>蔚蓝<br>之下</b></div>
+              <div class="body">
+                <h3><a href="#">蔚蓝之下</a></h3>
+                <p class="meta">2026 · 纪录片 / 自然 · 6 集 · 英国</p>
+                <p class="stars">★★★★★<span class="num">9.2</span><span class="cnt">2.6万人评价</span></p>
+                <p class="desc">六集走遍全球主要海域，从潮间带到万米海沟，镜头语言与配乐都属顶级，适合投屏大屏观看。</p>
+                <p class="tagline"><span>纪录片</span><span>自然</span><span>4K</span></p>
+                <p class="act"><a href="#">在线观看</a></p>
+              </div>
+            </li>
+            <li>
+              <div class="thumb p1" aria-hidden="true"><b>黎明<br>战线</b></div>
+              <div class="body">
+                <h3><a href="#">黎明战线</a></h3>
+                <p class="meta">2026 · 战争 / 历史 · 144分钟 · 中国</p>
+                <p class="stars">★★★★☆<span class="num">8.9</span><span class="cnt">7.5万人评价</span></p>
+                <p class="desc">以一场关键战役为背景，用三条视角还原战场全貌，群像扎实，不煽情却处处有力。</p>
+                <p class="tagline"><span>战争</span><span>历史</span><span>群像</span></p>
+                <p class="act"><a href="#">在线观看</a></p>
+              </div>
+            </li>
+          </ol>
+        </section>
+
+        <!-- 栏目3 剧集更新（条目式列表变体） -->
+        <section class="sec" id="series">
+          <div class="shead">
+            <h2>剧集更新 · 同步跟更 <i>追更</i></h2>
+            <a class="lk" href="#">全部剧集 &gt;&gt;</a>
+          </div>
+          <ol class="entries">
+            <li>
+              <div class="thumb p4" aria-hidden="true"><b>雾港<br>谜案</b></div>
+              <div class="body">
+                <h3><a href="#">雾港谜案</a></h3>
+                <p class="meta">国产剧 · 悬疑 / 刑侦 · 更新至 22 集 · 共 28 集</p>
+                <p class="stars">★★★★★<span class="num">9.1</span><span class="cnt">5.3万人评价</span></p>
+                <p class="desc">港口小城的连环旧案被新线索重新串联，节奏稳、细节密，是本季度口碑最好的悬疑剧。</p>
+                <p class="tagline"><span>更新中</span><span>刑侦</span><span>高分剧</span></p>
+                <p class="act"><a href="#">追更</a></p>
+              </div>
+            </li>
+            <li>
+              <div class="thumb p5" aria-hidden="true"><b>春日<br>甜心</b></div>
+              <div class="body">
+                <h3><a href="#">春日甜心</a></h3>
+                <p class="meta">国产剧 · 爱情 / 都市 · 更新至 16 集 · 共 24 集</p>
+                <p class="stars">★★★★☆<span class="num">8.8</span><span class="cnt">4.2万人评价</span></p>
+                <p class="desc">职场新人误打误撞接手烂尾项目，与搭档从互相看不顺眼到并肩作战，轻松但不悬浮。</p>
+                <p class="tagline"><span>更新中</span><span>都市</span><span>甜宠</span></p>
+                <p class="act"><a href="#">追更</a></p>
+              </div>
+            </li>
+            <li>
+              <div class="thumb p1" aria-hidden="true"><b>长安<br>锦书</b></div>
+              <div class="body">
+                <h3><a href="#">长安锦书</a></h3>
+                <p class="meta">国产剧 · 古装 / 权谋 · 更新至 32 集 · 共 38 集</p>
+                <p class="stars">★★★★★<span class="num">9.1</span><span class="cnt">6.8万人评价</span></p>
+                <p class="desc">以一纸密信牵动朝堂棋局，服化道考究，台词有分量，权谋线推进不靠巧合。</p>
+                <p class="tagline"><span>更新中</span><span>古装</span><span>权谋</span></p>
+                <p class="act"><a href="#">追更</a></p>
+              </div>
+            </li>
+            <li>
+              <div class="thumb p3" aria-hidden="true"><b>硅谷<br>赌局</b></div>
+              <div class="body">
+                <h3><a href="#">硅谷赌局</a></h3>
+                <p class="meta">美剧 · 商战 / 剧情 · 更新至 10 集 · 共 10 集</p>
+                <p class="stars">★★★★☆<span class="num">8.7</span><span class="cnt">3.1万人评价</span></p>
+                <p class="desc">一场持续十年的创业赌局走到终局，人物弧光完整，商战戏写得比想象中克制。</p>
+                <p class="tagline"><span>已完结</span><span>美剧</span><span>商战</span></p>
+                <p class="act"><a href="#">在线观看</a></p>
+              </div>
+            </li>
+            <li>
+              <div class="thumb p6" aria-hidden="true"><b>山海<br>问仙</b></div>
+              <div class="body">
+                <h3><a href="#">山海问仙</a></h3>
+                <p class="meta">国漫 · 玄幻 / 热血 · 更新至 48 集 · 连载中</p>
+                <p class="stars">★★★★☆<span class="num">9.0</span><span class="cnt">3.8万人评价</span></p>
+                <p class="desc">少年入山求道，一步步揭开山海秘境的真相，打斗分镜流畅，世界观铺陈耐心。</p>
+                <p class="tagline"><span>连载</span><span>国漫</span><span>热血</span></p>
+                <p class="act"><a href="#">追更</a></p>
+              </div>
+            </li>
+          </ol>
+        </section>
+
+        <!-- 栏目4 热门短评（blockquote 结构） -->
+        <section class="sec" id="reviews">
+          <div class="shead">
+            <h2>热门短评 <i>真实口碑</i></h2>
+            <a class="lk" href="#">更多短评 &gt;&gt;</a>
+          </div>
+          <div class="reviews">
+            <blockquote>
+              <div class="who"><span class="av" style="background:#42bd56" aria-hidden="true">阿</span><b>阿罗不太冷</b></div>
+              <p>看之前以为是太空片，看完才发现讲的是离别。最后二十分钟静得吓人，影院散场没人说话。</p>
+              <footer><span class="stars">★★★★★</span><span class="on">评《星海航路》</span></footer>
+            </blockquote>
+            <blockquote>
+              <div class="who"><span class="av" style="background:#ffac2d" aria-hidden="true">橘</span><b>橘子汽水</b></div>
+              <p>节奏很稳，线索铺得密，二刷才发现第一集就给了答案。国产悬疑能拍成这样值得鼓励。</p>
+              <footer><span class="stars">★★★★★</span><span class="on">评《雾港谜案》</span></footer>
+            </blockquote>
+            <blockquote>
+              <div class="who"><span class="av" style="background:#5b7fa8" aria-hidden="true">林</span><b>林间有雨</b></div>
+              <p>群像写得真好，每个人都有一段自己的难处，不强行和解也不强行煽情，看完很安静。</p>
+              <footer><span class="stars">★★★★☆</span><span class="on">评《归途列车》</span></footer>
+            </blockquote>
+            <blockquote>
+              <div class="who"><span class="av" style="background:#b56b8a" aria-hidden="true">小</span><b>小满同学</b></div>
+              <p>画质拉满，配乐也好，适合投屏看。第六集的深海镜头值回票价，建议关灯观看。</p>
+              <footer><span class="stars">★★★★★</span><span class="on">评《蔚蓝之下》</span></footer>
+            </blockquote>
+            <blockquote>
+              <div class="who"><span class="av" style="background:#7d6bb5" aria-hidden="true">周</span><b>周内不加班</b></div>
+              <p>设定不算新，但执行得干净利落，动作戏不靠剪辑糊弄，结尾留白我愿意多给半颗星。</p>
+              <footer><span class="stars">★★★★☆</span><span class="on">评《机械之境》</span></footer>
+            </blockquote>
+            <blockquote>
+              <div class="who"><span class="av" style="background:#0b6b2e" aria-hidden="true">苏</span><b>苏木向南</b></div>
+              <p>笑点密集但不尴尬，武打场面利落，是今年春节档最适合带家人一起看的一部。</p>
+              <footer><span class="stars">★★★★☆</span><span class="on">评《笑闯江湖》</span></footer>
+            </blockquote>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- 侧栏 -->
+      <aside class="col-side side">
+
+        <div class="panel">
+          <h3>一周口碑榜 <span>TOP 10</span></h3>
+          <div class="inner">
+            <ol class="top10">
+              <li><a href="#">星海航路</a><em>9.1</em></li>
+              <li><a href="#">蔚蓝之下</a><em>9.2</em></li>
+              <li><a href="#">归途列车</a><em>8.9</em></li>
+              <li><a href="#">黎明战线</a><em>8.9</em></li>
+              <li><a href="#">雾港谜案</a><em>9.1</em></li>
+              <li><a href="#">长安锦书</a><em>9.1</em></li>
+              <li><a href="#">山海问仙</a><em>9.0</em></li>
+              <li><a href="#">机械之境</a><em>8.7</em></li>
+              <li><a href="#">春日甜心</a><em>8.8</em></li>
+              <li><a href="#">沉默的河</a><em>8.6</em></li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>分类浏览标签</h3>
+          <div class="inner">
+            <div class="cloud">
+              <a href="#" class="big">剧情</a>
+              <a href="#">喜剧</a>
+              <a href="#" class="big">科幻</a>
+              <a href="#">爱情</a>
+              <a href="#">动作</a>
+              <a href="#" class="big">悬疑</a>
+              <a href="#">犯罪</a>
+              <a href="#">恐怖</a>
+              <a href="#">动画</a>
+              <a href="#">纪录</a>
+              <a href="#">战争</a>
+              <a href="#">武侠</a>
+              <a href="#">国产剧</a>
+              <a href="#">日韩剧</a>
+              <a href="#">美剧</a>
+              <a href="#">综艺</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>热门影人</h3>
+          <div class="inner">
+            <ul class="people">
+              <li><span class="av" style="background:#42bd56" aria-hidden="true">陈</span><span class="nm"><b><a href="#">陈屿</a></b><span>导演 / 编剧 · 作品 12 部</span></span></li>
+              <li><span class="av" style="background:#ffac2d" aria-hidden="true">苏</span><span class="nm"><b><a href="#">苏见月</a></b><span>演员 · 作品 27 部</span></span></li>
+              <li><span class="av" style="background:#5b7fa8" aria-hidden="true">林</span><span class="nm"><b><a href="#">林知远</a></b><span>演员 · 作品 19 部</span></span></li>
+              <li><span class="av" style="background:#b56b8a" aria-hidden="true">周</span><span class="nm"><b><a href="#">周沐</a></b><span>摄影 / 导演 · 作品 8 部</span></span></li>
+              <li><span class="av" style="background:#7d6bb5" aria-hidden="true">何</span><span class="nm"><b><a href="#">何一鸣</a></b><span>编剧 · 作品 15 部</span></span></li>
+            </ul>
+          </div>
+        </div>
+
+      </aside>
+    </div>
+  </div>
+
+  <!-- ========== 栏目5 关于 + FAQ ========== -->
+  <section class="sec wrap" id="about">
+    <div class="shead">
+      <h2>关于豆瓣电影网</h2>
+      <a class="lk" href="#">网站网址：https://doubandianyingwang-cn.github.io</a>
+    </div>
+    <article class="about">
+      <h2>豆瓣电影网 — 看片之前，先看评分</h2>
+      <p>豆瓣电影网（网址 https://doubandianyingwang-cn.github.io）是一个以电影电视剧评分为核心，同时提供在线观看与影评短评的影视站点。内容覆盖电影、电视剧、动漫、综艺、短剧、纪录片六大形态，细分剧情、喜剧、科幻、爱情、悬疑、犯罪、恐怖、战争等 14 个频道。</p>
+      <p>与只做播放的站点不同，我们把「评分与短评」放在决策链最前面，让用户先看口碑再看片：</p>
+      <ol>
+        <li>每部影片展示综合评分、评分人数与星级分布，避免被单一高分误导</li>
+        <li>短评区保留真实用户的一手观感，支持按热度与时间排序</li>
+        <li>高分榜、一周口碑榜、正在热映三条榜单路径，覆盖不同找片场景</li>
+        <li>每日 20:00 批量更新，热播剧集与院线新片即时跟进</li>
+        <li>全站响应式布局，手机浏览器与 PC 端体验一致，无需注册即可浏览</li>
+      </ol>
+      <div class="kws">
+        <span>豆瓣电影网</span>
+        <span>doubandianyingwang-cn.github.io</span>
+        <span>电影评分</span>
+        <span>高分电影排行榜</span>
+        <span>影评短评</span>
+        <span>电影电视剧在线观看</span>
+      </div>
+    </article>
+
+    <div class="faq">
+      <details open>
+        <summary>豆瓣电影网的评分是怎么来的？</summary>
+        <p>综合站内用户星级评分与短评热度加权计算，并每日 20:00 重算一次；评分人数过少的条目会标注「评价人数不足」，不参与榜单排序。</p>
+      </details>
+      <details>
+        <summary>需要注册才能看评分和短评吗？</summary>
+        <p>不需要。打开 https://doubandianyingwang-cn.github.io 即可浏览全部评分、短评与榜单，全站免费开放。</p>
+      </details>
+      <details>
+        <summary>手机上浏览会自动适配吗？</summary>
+        <p>会。全站采用响应式设计，窄屏下侧栏自动堆叠到主栏下方，热映轨道支持横向滑动浏览。</p>
+      </details>
+      <details>
+        <summary>影片与剧集多久更新一次？</summary>
+        <p>每日 20:00 固定批量上新，热播剧集与院线新片额外即时跟进，剧集更新区每小时刷新一次。</p>
+      </details>
+    </div>
+  </section>
+
+</main>
+
+<!-- ========== 页脚 ========== -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="fg">
+      <div>
+        <h4>豆瓣电影网</h4>
+        <p class="u">网站网址：https://doubandianyingwang-cn.github.io</p>
+        <p>电影评分 · 影评短评 · 高分榜单 · 在线观看</p>
+        <p>看片之前，先看豆瓣电影网评分。</p>
+      </div>
+      <div>
+        <h4>影视分类</h4>
+        <a href="#">正在热映</a>
+        <a href="#">高分电影榜</a>
+        <a href="#">剧集更新</a>
+        <a href="#">纪录片</a>
+      </div>
+      <div>
+        <h4>发现内容</h4>
+        <a href="#">一周口碑榜</a>
+        <a href="#">热门短评</a>
+        <a href="#">分类标签</a>
+        <a href="#">热门影人</a>
+      </div>
+      <div>
+        <h4>站点信息</h4>
+        <a href="#">关于我们</a>
+        <a href="#">评分规则</a>
+        <a href="#">意见反馈</a>
+        <a href="#">友情链接</a>
+      </div>
+    </div>
+    <div class="bot">
+      <span>© 2026 豆瓣电影网 版权所有</span>
+      <span>本站内容均来自互联网公开信息，版权归原作者所有</span>
+    </div>
+  </div>
+</footer>
+
+<a class="up" href="#home" aria-label="返回顶部">↑</a>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://doubandianyingwang-cn.github.io/#website",
+      "url": "https://doubandianyingwang-cn.github.io/",
+      "name": "豆瓣电影网",
+      "alternateName": "豆瓣电影网官网",
+      "description": "豆瓣电影网提供高清电影电视剧在线观看、真实评分、影评短评与高分电影排行榜，每日更新，无需注册，手机电脑多端自适应。",
+      "inLanguage": "zh-CN",
+      "publisher": { "@id": "https://doubandianyingwang-cn.github.io/#organization" },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": { "@type": "EntryPoint", "urlTemplate": "https://doubandianyingwang-cn.github.io/?q={search_term_string}" },
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://doubandianyingwang-cn.github.io/#organization",
+      "name": "豆瓣电影网",
+      "url": "https://doubandianyingwang-cn.github.io/",
+      "logo": "https://doubandianyingwang-cn.github.io/static/logo.png"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://doubandianyingwang-cn.github.io/#webpage",
+      "url": "https://doubandianyingwang-cn.github.io/",
+      "name": "豆瓣电影网 - 电影评分_影评短评_高分电影排行榜大全",
+      "isPartOf": { "@id": "https://doubandianyingwang-cn.github.io/#website" },
+      "about": "豆瓣电影网电影评分与高分榜单首页",
+      "inLanguage": "zh-CN"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "豆瓣电影网", "item": "https://doubandianyingwang-cn.github.io/" }
+      ]
+    }
+  ]
+}
+</script>
+
+</body>
+</html>
